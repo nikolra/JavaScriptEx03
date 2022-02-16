@@ -11,20 +11,23 @@ class NavigationBar extends React.Component {
             show: show,
             HomePageUrl: "",
             MessengerUrl: "",
-            AboutUrl: ""
+            AboutUrl: "",
+            AdminUrl: ""
         };
     }
 
     async componentDidMount() {
         await this.fetch_is_logged_in();
         const home_page_url = "http://localhost:2718/HomePage/HomePage.html?token=" + this.state.token;
-        const about_url = "http://localhost:2718/About/About.html?token=" + this.state.token + "&id=" + this.state.id;
+        const about_url = "http://localhost:2718/About/About.html?token=" + this.state.token// + "&id=" + this.state.id;
         const messenger_url = "http://localhost:2718/MessegePage/MessegePage.html?token=" + this.state.token;
+        const admin_url = "http://localhost:2718/AdminPage/AdminPage.html?token=" + this.state.token;
         const show = this.state.id === 0 ? "Admin" : "User";
         this.setState({
             HomePageUrl: home_page_url,
             MessengerUrl: messenger_url,
             AboutUrl: about_url,
+            AdminUrl: admin_url,
             show: show
         });
     }
@@ -66,7 +69,8 @@ class NavigationBar extends React.Component {
             method: 'PUT',
             headers: {
                 'authorization': this.state.token,
-                'Content-Type': 'application/json; charset=utf-8'}
+                'Content-Type': 'application/json; charset=utf-8'
+            }
         });
 
         if (response.status !== 200) {
@@ -95,7 +99,7 @@ class NavigationBar extends React.Component {
                 }, "Home"))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
                     href: this.state.MessengerUrl
                 }, "Messenger"))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
-                    href: this.state.MessengerUrl
+                    href: this.state.AdminUrl
                 }, "Admin"))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
                     href: this.state.AboutUrl
                 }, "About"))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", {

@@ -74,7 +74,9 @@ class MessagesPage extends React.Component {
         });
 
         if (response.status === 200) {
-            return await response.json();
+            const data = await response.json();
+            console.log(data);
+            return data;
         } else {
             const err = await response.text();
             alert(err);
@@ -87,7 +89,7 @@ class MessagesPage extends React.Component {
         if (await this.fetch_send_message(text, id)) this.setState({
             show: "Messages"
         });else this.setState({
-            show: "AddPost"
+            show: "SendMessage"
         });
     }
 
@@ -118,7 +120,7 @@ class MessagesPage extends React.Component {
         switch (this.state.show) {
             case "Messages":
                 return React.createElement('div', null, React.createElement(NavigationBar, null), React.createElement('div', null, this.state.messages.map(item => {
-                    return React.createElement(Post, {
+                    return React.createElement(Messages, {
                         text: item.text,
                         date: item.date
                     });
@@ -126,7 +128,7 @@ class MessagesPage extends React.Component {
                     className: 'button',
                     onClick: () => {
                         this.setState({
-                            show: "Messages"
+                            show: "SendMessage"
                         });
                     }
                 }, "Send new message")));

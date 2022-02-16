@@ -43,7 +43,6 @@ class LoginUser extends React.Component {
 
         if (response.status === 200) {
             const data = await response.json();
-            console.log("login token: ", data.token);
             document.cookie = JSON.stringify(data);
             window.location.href = "http://localhost:2718/HomePage/HomePage.html?token=" + data.token;
         } else {
