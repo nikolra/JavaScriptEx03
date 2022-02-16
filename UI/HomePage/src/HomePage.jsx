@@ -152,7 +152,7 @@ class HomePage extends React.Component {
         switch (this.state.show) {
             case "HomePage":
                 return React.createElement('div', null,
-                    React.createElement(NavigationBar, {token: this.state.Token, id: this.state.id}),
+                    React.createElement(NavigationBar, null),
                     React.createElement('div', null, this.state.posts.map((item) => {
                             return React.createElement(Post, {
                                 text: item.text,
@@ -164,7 +164,7 @@ class HomePage extends React.Component {
                 )
             case "AddPost":
                 return <div>
-                    <NavigationBar token={this.state.Token} id={this.state.id}/>
+                    <NavigationBar />
                     <span>Please write the text of your new post</span>
                     <input id={'postText'}/>
                     <button className={'button'} id={'postButton'} onClick={this.handle_post_post}>Post!</button>

@@ -117,7 +117,7 @@ class MessagesPage extends React.Component {
         switch (this.state.show) {
             case "Messages":
                 return React.createElement('div', null,
-                    React.createElement(NavigationBar, {token: this.state.token, id: this.state.id}),
+                    React.createElement(NavigationBar, null),
                     React.createElement('div', null, this.state.messages.map((item) => {
                             return React.createElement(Post, {
                                 text: item.text,
@@ -129,7 +129,7 @@ class MessagesPage extends React.Component {
                 )
             case "SendMessage":
                 return <div>
-                            <NavigationBar token={this.state.token} id={this.state.id}/>
+                            <NavigationBar/>
                             <div>
                                 <span>Please write the text of your message</span>
                                 <input id={'postText'}/>
