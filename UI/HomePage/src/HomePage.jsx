@@ -3,14 +3,19 @@ const N = 5;
 
 class HomePage extends React.Component {
 
-
     constructor(props) {
         super(props);
         this.handle_add_post = this.handle_add_post.bind(this);
         this.handle_post_post = this.handle_post_post.bind(this);
+        const href = window.location.href;
+        const url = href.split('?');
+        let token = url[1];
+        token = token.split('=')[1];
         this.state = {
             posts: [],
-            show: "HomePage"
+            show: "HomePage",
+            Token: token,
+            id: -1
         };
     }
 
@@ -54,10 +59,10 @@ class HomePage extends React.Component {
                 token: token,
                 id: await response.json()
             }
+            this.setState({Token: token, id: data.id})
             document.cookie = JSON.stringify(data);
             return true;
         }
-
         window.location.href = "http://localhost:2718/Login/Login.html";
         return false;
     }
@@ -147,6 +152,7 @@ class HomePage extends React.Component {
         switch (this.state.show) {
             case "HomePage":
                 return React.createElement('div', null,
+                    React.createElement(NavigationBar, {token: this.state.Token, id: this.state.id}),
                     React.createElement('div', null, this.state.posts.map((item) => {
                             return React.createElement(Post, {
                                 text: item.text,
@@ -158,6 +164,7 @@ class HomePage extends React.Component {
                 )
             case "AddPost":
                 return <div>
+                    <NavigationBar token={this.state.Token} id={this.state.id}/>
                     <span>Please write the text of your new post</span>
                     <input id={'postText'}/>
                     <button className={'button'} id={'postButton'} onClick={this.handle_post_post}>Post!</button>

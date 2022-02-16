@@ -1,7 +1,6 @@
 "use strict";
 
 class LoginUser extends React.Component {
-
     constructor(props) {
         super(props);
         this.handle_Login = this.handle_Login.bind(this);
@@ -14,6 +13,7 @@ class LoginUser extends React.Component {
             method: 'POST',
             body: JSON.stringify({
                 token: data.token,
+                id: data.id
             }),
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
