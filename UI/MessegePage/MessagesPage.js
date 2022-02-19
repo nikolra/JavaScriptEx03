@@ -150,7 +150,11 @@ class MessagesPage extends React.Component {
     render() {
         switch (this.state.show) {
             case "Messages":
-                return React.createElement('div', null, React.createElement(NavigationBar, null), React.createElement('div', null, this.state.messages.map(item => {
+                return React.createElement('div', null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement(Indicators, {
+                    userId: this.state.id,
+                    messages: this.state.allMessages,
+                    posts: this.state.posts
+                }), React.createElement('div', null, this.state.messages.map(item => {
                     return React.createElement(Messages, {
                         text: item.text,
                         date: item.date
@@ -165,9 +169,13 @@ class MessagesPage extends React.Component {
                 }, "Send new message")));
 
             case "SendMessage":
-                return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Please write the text of your message"), /*#__PURE__*/React.createElement("input", {
+                return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), ",", /*#__PURE__*/React.createElement(Indicators, {
+                    userId: this.state.id,
+                    messages: this.state.allMessages,
+                    posts: this.state.posts
+                }), ",", /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, "Please write the text of your message"), /*#__PURE__*/React.createElement("textarea", {
                     id: 'postText'
-                })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Please enter the recipients id"), /*#__PURE__*/React.createElement("input", {
+                })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", null, "Please enter the recipients id"), /*#__PURE__*/React.createElement("input", {
                     id: 'recipientId'
                 })), /*#__PURE__*/React.createElement("button", {
                     className: 'button',
