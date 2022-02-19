@@ -1,10 +1,10 @@
+"use strict";
 
 class NavigationBar extends React.Component {
-
     constructor(props) {
         super(props);
         this.handle_log_out = this.handle_log_out.bind(this);
-        const show = this.props.id === 0 ? "Admin" : "User"
+        const show = this.props.id === 0 ? "Admin" : "User";
         this.state = {
             token: "",
             id: -1,
@@ -17,7 +17,7 @@ class NavigationBar extends React.Component {
     }
 
     async componentDidMount() {
-        await this.fetch_is_logged_in()
+        await this.fetch_is_logged_in();
         const home_page_url = "http://localhost:2718/HomePage/HomePage.html?token=" + this.state.token;
         const about_url = "http://localhost:2718/About/About.html?token=" + this.state.token;
         const messenger_url = "http://localhost:2718/MessegePage/MessegePage.html?token=" + this.state.token;
@@ -71,8 +71,8 @@ class NavigationBar extends React.Component {
                 'authorization': this.state.token,
                 'Content-Type': 'application/json; charset=utf-8'
             }
-
         });
+
         if (response.status !== 200) {
             const err = await response.text();
             alert(err);
@@ -81,29 +81,34 @@ class NavigationBar extends React.Component {
 
     render() {
         switch (this.state.show) {
-            case("User"):
-                return <div id={"navBar"}>
-                    <nav>
-                        <button><a href={this.state.HomePageUrl}>Home</a></button>
-                        <button><a href={this.state.MessengerUrl}>Messenger</a></button>
-                        <button><a href={this.state.AboutUrl}>About</a></button>
-                        <button onClick={this.handle_log_out}>Logout</button>
-                    </nav>
-                    <Indicators userId={this.props.userId} messages={this.props.messages} posts={this.props.posts}/>
-                    <br/>
-                </div>
-            case("Admin"):
-                return <div id={"navBar"}>
-                    <nav>
-                        <button><a href={this.state.HomePageUrl}>Home</a></button>
-                        <button><a href={this.state.MessengerUrl}>Messenger</a></button>
-                        <button><a href={this.state.AdminUrl}>Admin</a></button>
-                        <button><a href={this.state.AboutUrl}>About</a></button>
-                        <button onClick={this.handle_log_out}>Logout</button>
-                    </nav>
-                    <Indicators userId={this.props.userId} messages={this.props.messages} posts={this.props.posts}/>
-                    <br/>
-                </div>
+            case "User":
+                return /*#__PURE__*/React.createElement("div", {
+                    id: "navBar"
+                }, /*#__PURE__*/React.createElement("nav", null, /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
+                    href: this.state.HomePageUrl
+                }, "Home")), /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
+                    href: this.state.MessengerUrl
+                }, "Messenger")), /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
+                    href: this.state.AboutUrl
+                }, "About")), /*#__PURE__*/React.createElement("button", {
+                    onClick: this.handle_log_out
+                }, "Logout")), /*#__PURE__*/React.createElement("br", null));
+
+            case "Admin":
+                return /*#__PURE__*/React.createElement("div", {
+                    id: "navBar"
+                }, /*#__PURE__*/React.createElement("nav", null, /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
+                    href: this.state.HomePageUrl
+                }, "Home")), /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
+                    href: this.state.MessengerUrl
+                }, "Messenger")), /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
+                    href: this.state.AdminUrl
+                }, "Admin")), /*#__PURE__*/React.createElement("button", null, /*#__PURE__*/React.createElement("a", {
+                    href: this.state.AboutUrl
+                }, "About")), /*#__PURE__*/React.createElement("button", {
+                    onClick: this.handle_log_out
+                }, "Logout")), /*#__PURE__*/React.createElement("br", null));
         }
     }
+
 }
