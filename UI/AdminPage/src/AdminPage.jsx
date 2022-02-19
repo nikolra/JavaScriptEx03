@@ -178,24 +178,32 @@ class AdminPage extends React.Component {
             case("AdminPage"):
                 return <div>
                     <NavigationBar />
-                    <button className={'button'} onClick={this.handle_approve} >Approve user</button>
-                    <button className={'button'} onClick={this.handle_Message_all}>Send message to all users</button>
-                    <button className={'button'} onClick={this.handle_delete_or_suspend}>Delete or Suspend a user</button>
-                    <button className={'button'} onClick={this.handle_activate_user}>Activate suspended user</button>
+                    <ul>
+                        <li><button className={'button'} onClick={this.handle_approve} >Approve user</button></li>
+                        <li><button className={'button'} onClick={this.handle_Message_all}>Send message to all users</button></li>
+                        <li><button className={'button'} onClick={this.handle_delete_or_suspend}>Delete or Suspend a user</button></li>
+                        <li><button className={'button'} onClick={this.handle_activate_user}>Activate suspended user</button></li>
+                    </ul>
                 </div>
             case("Approve"):
                 return <div>
                     <NavigationBar />
                     <label>insert the id of the user to approve </label>
                     <input id={'userToApprove'}/>
-                    <button className={'button'} onClick={this.fetch_approve} >Approve</button>
+                    <br/>
+                    <div>
+                        <button className={'button'} onClick={this.fetch_approve} >Approve</button>
+                    </div>
                 </div>
             case("MessageAll"):
                 return <div>
                     <NavigationBar />
                     <label>insert the message</label>
                     <input id={'messageText'}/>
-                    <button className={'button'} onClick={this.fetch_Message_all} >Send</button>
+                    <br/>
+                    <div>
+                        <button className={'button'} onClick={this.fetch_Message_all} >Send</button>
+                    </div>
                 </div>
             case("DeleteOrSuspend"):
                 return <div>
@@ -204,6 +212,7 @@ class AdminPage extends React.Component {
                         <label>insert the id of the user</label>
                         <input id={'userToDeleteOrSuspend'}/>
                     </div>
+                    <br/>
                     <div>
                         <button className={'button'} onClick={this.fetch_delete} >Delete</button>
                         <button className={'button'} onClick={this.fetch_suspend} >Suspend</button>
@@ -214,7 +223,10 @@ class AdminPage extends React.Component {
                     <NavigationBar />
                     <label>insert the id of the user to activate</label>
                     <input id={'userToActivate'}/>
-                    <button className={'button'} onClick={this.fetch_activate_user} >Activate</button>
+                    <br/>
+                    <div>
+                        <button className={'button'} onClick={this.fetch_activate_user} >Activate</button>
+                    </div>
                 </div>
         }
     }

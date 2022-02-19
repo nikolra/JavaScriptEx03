@@ -6,9 +6,12 @@ class MessagesPage extends React.Component {
     constructor(props) {
         super(props);
         this.handle_send_message = this.handle_send_message.bind(this);
+        this.fetch_messages = this.fetch_messages.bind(this);
         this.state = {
             show: "Messages",
             messages: [],
+            allMessages: [],
+            posts: [],
             token: "",
             id: -1
         };
@@ -16,16 +19,14 @@ class MessagesPage extends React.Component {
 
     async componentDidMount() {
         if (await this.fetch_is_logged_in()) {
+            await this.fetch_posts();
             const messages = await this.fetch_messages();
             if (!messages) return;
             messages.sort((m1, m2) => {
-                if (m1.date < m2.date) return 1;
-                else if (m1.data === m2.date) return 0;
-                else return -1;
+                if (m1.date < m2.date) return 1; else if (m1.data === m2.date) return 0; else return -1;
             });
-            if (messages.length < N)
-                this.update_list(messages);
-            else this.update_list(messages.slice(0, N));
+            if (messages.length < N) this.update_list(messages); else this.update_list(messages.slice(0, N));
+
         }
     }
 
@@ -76,7 +77,10 @@ class MessagesPage extends React.Component {
 
         if (response.status === 200) {
             const data = await response.json();
-            console.log(data);
+            data.forEach(message => {
+                message.date = new Date(message.date).toLocaleDateString();
+            })
+            this.setState({allMessages: data});
             return data;
         } else {
             const err = await response.text();
@@ -115,33 +119,59 @@ class MessagesPage extends React.Component {
         return true;
     }
 
+    async fetch_posts() {
+        const data = JSON.parse(document.cookie);
+        const response = await fetch('/api/post/user', {
+            method: 'GET',
+            headers: {
+                'authorization': data.token,
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (response.status === 200) {
+            const posts = await response.json();
+            this.setState({
+                posts: posts
+            });
+            return posts
+        } else {
+            const err = await response.text();
+            alert(err);
+        }
+    }
+
     render() {
         switch (this.state.show) {
             case "Messages":
                 return React.createElement('div', null,
-                    React.createElement(NavigationBar, null),
+                    <NavigationBar/>,
+                    <Indicators userId={this.state.id} messages={this.state.allMessages} posts={this.state.posts}/>,
                     React.createElement('div', null, this.state.messages.map((item) => {
                             return React.createElement(Messages, {
                                 text: item.text,
                                 date: item.date
                             });
                         }),
-                        <button className={'button'} onClick={() => {this.setState({show: "SendMessage"}) }}>Send new message</button>
+                        <button className={'button'} onClick={() => {
+                            this.setState({show: "SendMessage"})
+                        }}>Send new message</button>
                     )
                 )
             case "SendMessage":
                 return <div>
-                            <NavigationBar/>
-                            <div>
-                                <span>Please write the text of your message</span>
-                                <input id={'postText'}/>
-                            </div>
-                            <div>
-                                <span>Please enter the recipients id</span>
-                                <input id={'recipientId'}/>
-                            </div>
-                            <button className={'button'} id={'postButton'} onClick={this.handle_send_message}>Post!</button>
-                        </div>
+                    <NavigationBar/>,
+                    <Indicators userId={this.state.id} messages={this.state.allMessages} posts={this.state.posts}/>,
+                    <div>
+                        <div>Please write the text of your message</div>
+                        <textarea id={'postText'}/>
+                    </div>
+                    <div>
+                        <label>Please enter the recipients id</label>
+                        <input id={'recipientId'}/>
+                    </div>
+                    <button className={'button'} id={'postButton'} onClick={this.handle_send_message}>Send!</button>
+                </div>
         }
     }
 }

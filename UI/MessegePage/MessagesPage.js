@@ -6,9 +6,12 @@ class MessagesPage extends React.Component {
     constructor(props) {
         super(props);
         this.handle_send_message = this.handle_send_message.bind(this);
+        this.fetch_messages = this.fetch_messages.bind(this);
         this.state = {
             show: "Messages",
             messages: [],
+            allMessages: [],
+            posts: [],
             token: "",
             id: -1
         };
@@ -16,6 +19,7 @@ class MessagesPage extends React.Component {
 
     async componentDidMount() {
         if (await this.fetch_is_logged_in()) {
+            await this.fetch_posts();
             const messages = await this.fetch_messages();
             if (!messages) return;
             messages.sort((m1, m2) => {
@@ -75,7 +79,12 @@ class MessagesPage extends React.Component {
 
         if (response.status === 200) {
             const data = await response.json();
-            console.log(data);
+            data.forEach(message => {
+                message.date = new Date(message.date).toLocaleDateString();
+            });
+            this.setState({
+                allMessages: data
+            });
             return data;
         } else {
             const err = await response.text();
@@ -116,6 +125,28 @@ class MessagesPage extends React.Component {
         return true;
     }
 
+    async fetch_posts() {
+        const data = JSON.parse(document.cookie);
+        const response = await fetch('/api/post/user', {
+            method: 'GET',
+            headers: {
+                'authorization': data.token,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.status === 200) {
+            const posts = await response.json();
+            this.setState({
+                posts: posts
+            });
+            return posts;
+        } else {
+            const err = await response.text();
+            alert(err);
+        }
+    }
+
     render() {
         switch (this.state.show) {
             case "Messages":
@@ -142,7 +173,7 @@ class MessagesPage extends React.Component {
                     className: 'button',
                     id: 'postButton',
                     onClick: this.handle_send_message
-                }, "Post!"));
+                }, "Send!"));
         }
     }
 

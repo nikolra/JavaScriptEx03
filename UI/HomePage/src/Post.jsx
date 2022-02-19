@@ -6,19 +6,13 @@ class Post extends React.Component {
 
     render() {
 
-        return React.createElement(
-            'div',
-            null,
-            React.createElement(
-                'div',
-                {className: 'postText', id: 'text'},
-                this.props.text
-            ),
-            React.createElement(
-                'div',
-                {className: 'postDate', id: 'date'},
-                this.props.date
-            )
-        );
+        return <div className={"post"}>
+            <div className={"postData"}>
+                {this.props.text}
+            </div>
+            <div className={"postData"}>
+                {this.props.date}
+            </div>
+        </div>
     }
 }

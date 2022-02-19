@@ -1,0 +1,118 @@
+
+.body{
+    -webkit-text-size-adjust: 100%;
+    alignment: center;
+}
+
+input {
+    background: #ecf0f3;
+    padding: 1vw 1vw 1vw 2vw;
+    font-size: 1.4vw;
+    border-radius: 5vw;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Copperplate Gothic Light", serif;
+    margin: 0.5vw;
+}
+
+textarea {
+    background: #ecf0f3;
+    padding: 1vw 1vw 1vw 2vw;
+    font-size: 1.4vw;
+    border-radius: 5vw;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Copperplate Gothic Light", serif;
+    margin: 0.5vw;
+}
+
+.postData {
+    margin: auto auto 0.5vw 0.8vw;
+    font-weight: 600;
+    font-size: 1vw;
+}
+
+label {
+    padding-right: 0.5vw;
+    font-weight: 600;
+    font-size: 1.5vw;
+}
+div {
+    padding-right: 0.5vw;
+    font-weight: 600;
+    font-size: 1.5vw;
+    padding-left: 0.3vw;
+}
+
+li {
+    margin: 0.5vw 0.5vw;
+    font-weight: 600;
+    font-size: 0;
+}
+
+li>button {
+    font-size: 1.5vw;
+    padding: 0.2vw 1vw;
+}
+
+div>button {
+    font-size: 1.5vw;
+    padding: 0.2vw 1vw;
+}
+
+button {
+    background-color: #fbeee0;
+    border: 0.2vw solid #CBCED1FF;
+    border-radius: 3vw;
+    font-family: "Copperplate Gothic Light", serif;
+    box-shadow: #CBCED1FF 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 1vw;
+    padding: 0 0.8vw;
+    line-height: 3vw;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-right: 0.5vw;
+}
+
+.post {
+    margin-block: 0.5vw;
+    background-color: #e7dacc;
+    border: 0.2vw solid #d2deea;
+    border-radius: 3vw;
+}
+#posts {
+    float: left;
+    width: 50%;
+    display: inline-block;
+}
+
+#posts>div {
+    padding-bottom: 0.5vw;
+    width: 50%;
+}
+
+#navBar {
+    margin: 2vw auto auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.indicatorsWrap > nav {
+    width: 50%;
+}
+
+#postText {
+    width: 40vw;
+    height: 20vw;
+}

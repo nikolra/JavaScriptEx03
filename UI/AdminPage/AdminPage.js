@@ -182,40 +182,40 @@ class AdminPage extends React.Component {
     render() {
         switch (this.state.show) {
             case "AdminPage":
-                return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement("button", {
+                return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.handle_approve
-                }, "Approve user"), /*#__PURE__*/React.createElement("button", {
+                }, "Approve user")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.handle_Message_all
-                }, "Send message to all users"), /*#__PURE__*/React.createElement("button", {
+                }, "Send message to all users")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.handle_delete_or_suspend
-                }, "Delete or Suspend a user"), /*#__PURE__*/React.createElement("button", {
+                }, "Delete or Suspend a user")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.handle_activate_user
-                }, "Activate suspended user"));
+                }, "Activate suspended user"))));
 
             case "Approve":
                 return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement("label", null, "insert the id of the user to approve "), /*#__PURE__*/React.createElement("input", {
                     id: 'userToApprove'
-                }), /*#__PURE__*/React.createElement("button", {
+                }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.fetch_approve
-                }, "Approve"));
+                }, "Approve")));
 
             case "MessageAll":
                 return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement("label", null, "insert the message"), /*#__PURE__*/React.createElement("input", {
                     id: 'messageText'
-                }), /*#__PURE__*/React.createElement("button", {
+                }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.fetch_Message_all
-                }, "Send"));
+                }, "Send")));
 
             case "DeleteOrSuspend":
                 return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", null, "insert the id of the user"), /*#__PURE__*/React.createElement("input", {
                     id: 'userToDeleteOrSuspend'
-                })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+                })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.fetch_delete
                 }, "Delete"), /*#__PURE__*/React.createElement("button", {
@@ -226,10 +226,10 @@ class AdminPage extends React.Component {
             case "Activate":
                 return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(NavigationBar, null), /*#__PURE__*/React.createElement("label", null, "insert the id of the user to activate"), /*#__PURE__*/React.createElement("input", {
                     id: 'userToActivate'
-                }), /*#__PURE__*/React.createElement("button", {
+                }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
                     className: 'button',
                     onClick: this.fetch_activate_user
-                }, "Activate"));
+                }, "Activate")));
         }
     }
 

@@ -40,7 +40,9 @@ class LoginUser extends React.Component {
             type: 'password'
         })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
             onClick: this.handle_register
-        }, "Register")));
+        }, "Register"), /*#__PURE__*/React.createElement("button", {
+            onClick: () => window.location.href = "http://localhost:2718/Login/Login.html"
+        }, "Back to login")));
     }
 
 }
